@@ -3,6 +3,7 @@ import logging
 from django.contrib.auth import get_user_model
 from django_cas_ng.backends import CASBackend
 from django_cas_ng.utils import get_cas_client
+from allauth.account.utils import send_email_confirmation
 
 logger = logging.getLogger(__name__)
 
@@ -97,6 +98,8 @@ class CASAuthBackend(CASBackend):
                 user.save()
                 logger.debug('after saving user with attributes %s, %s, %s'
                              % (user.last_name, user.first_name, user.email))
+                send_email_confirmation(request, user, signup=True)
+
 
             except Exception as ex:
                 logger.error('Exception retrieving person attributes, attributes received: {}'.format(attributes))
