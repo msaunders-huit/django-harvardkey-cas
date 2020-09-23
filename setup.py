@@ -34,6 +34,6 @@ setup(
     ],
     install_requires=[
         "Django>=2.2.4",
-        "django-cas-ng==3.6.0",
+        "django-cas-ng>=3.6.0",
     ],
 )
